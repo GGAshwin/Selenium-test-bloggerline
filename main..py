@@ -3,11 +3,14 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
+from seleniumbase import get_driver
+
 import time
 
 # assert "Python" in driver.title
-service = Service(executable_path='./chromedriver.exe')
-driver = webdriver.Chrome(service=service)
+# print(DesiredCapabilities)
 
 
 def login_user():
@@ -63,5 +66,18 @@ def write_post_and_delete():
 
 # Run tests
 if __name__ == "__main__":
+    service = Service(executable_path='./chromedriver.exe')
+    driver = webdriver.Chrome(service=service)
     login_user()
     write_post_and_delete()
+
+    driver = get_driver("firefox", headless=False)
+    print(driver)
+    login_user()
+    write_post_and_delete()
+
+    driver = get_driver("edge", headless=False)
+    print(driver)
+    login_user()
+    write_post_and_delete()
+    # pass
